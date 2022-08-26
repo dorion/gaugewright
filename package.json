@@ -1,6 +1,6 @@
 {
   "name": "gaugewright",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "Interface between Gauge and Playwright",
   "repository": {
     "url": "https://github.com/dorion/gaugewright"

@@ -1,4 +1,4 @@
 "use strict";
 
-export * from "./api";
+export * from "./apiTest";
 export * from "./browserTest"

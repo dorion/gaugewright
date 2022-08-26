@@ -22,7 +22,11 @@ export function setTracing(tracing: boolean) {
     isTracing = tracing
 }
 
-export async function OpenBrowserCtx(selectedBrowser: string, launchOptions: LaunchOptions, options: BrowserContextOptions) {
+export async function OpenBrowserCtx(selectedBrowser?: string, launchOptions?: LaunchOptions, options?: BrowserContextOptions) {
+    selectedBrowser = selectedBrowser ?? 'chrome';
+    launchOptions = launchOptions ?? {};
+    options = options ?? {};
+    
     await setBrowser(selectedBrowser, launchOptions);
     await setBrowserCtx(options);
     await setPage();
