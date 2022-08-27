@@ -1,6 +1,6 @@
 {
   "name": "gaugewright",
-  "version": "0.0.10",
+  "version": "0.0.15",
   "description": "Interface between Gauge and Playwright",
   "repository": {
     "url": "https://github.com/dorion/gaugewright"
@@ -8,7 +8,7 @@
   "main": "lib/index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "tsc",
+    "build": "tsc -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tamás Dévai",
