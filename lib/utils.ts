@@ -56,7 +56,7 @@ function randomize(placeHolder: string): string {
 
     let generatedString = setPrefix(placeHolder);
     
-    generatedString = randomstring.generate({
+    generatedString += randomstring.generate({
         charset: charSet,
         length: length,
     });
@@ -67,13 +67,13 @@ function randomize(placeHolder: string): string {
 }
 
 function setPrefix(placeholder: string): string {
-    let prefixText = '';
+    let prefixedText = '';
     
     if (placeholder.split(":")[3] == 'PREFIX') {
-        prefixText = placeholder.split(":")[4];
+        prefixedText = placeholder.split(":")[4];
     }
 
-    return prefixText;
+    return prefixedText;
 }
 
 export function SetItemInObjectRepository(key: string, value: string) {
@@ -92,10 +92,8 @@ function getItemFromObjectRepository(match: string): any {
 
 export function Log(msg: string) {
     Gauge.writeMessage(msg);
-    
-    if (process.argv.slice(2).includes('-v')) {
-        console.log(msg);
-    }
+
+    console.log(msg);
 }
 
 export function SelectorCorrection(param: string, visible: string = '>> visible=true') {

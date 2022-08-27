@@ -59,9 +59,9 @@ async function setPage(newPage?: Page) {
 
     // handling JS alert(), comfirm(), prompt() to always accept
     currentPage.on('dialog', async (dialog) => {
-        Log(dialog.message());
-
         await dialog.accept();
+        
+        Log('Dialog event: ' + dialog.message());
     });
 
     currentPage.on('download', async (download) => {
