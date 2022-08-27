@@ -12,6 +12,7 @@ import {
     BrowserType
 } from "playwright";
 import { stat } from "fs";
+import { Log } from "./utils";
 
 export let currentPage: Page;
 export let browser: Browser;
@@ -44,6 +45,8 @@ async function setPage(newPage?: Page) {
 
     // handling JS alert(), comfirm(), prompt() to always accept
     currentPage.on('dialog', async (dialog) => {
+        Log(dialog.message());
+
         await dialog.accept();
     });
 
