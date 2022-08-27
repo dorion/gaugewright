@@ -1,6 +1,6 @@
 {
   "name": "gaugewright",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Interface between Gauge and Playwright",
   "repository": {
     "url": "https://github.com/dorion/gaugewright"
@@ -14,10 +14,13 @@
   "author": "Tamás Dévai",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/node": "^18.7.13",
-    "typescript": "^4.7.4"
+    "@types/node": "18.7.13",
+    "@types/randomstring": "^1.1.8",
+    "gauge-ts": "0.1.1",
+    "randomstring": "1.2.2",
+    "typescript": "4.7.4"
   },
   "dependencies": {
-    "playwright": "^1.25.1"
+    "playwright": "1.25.1"
   }
 }
