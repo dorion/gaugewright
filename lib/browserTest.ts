@@ -51,7 +51,7 @@ export async function CloseBrowser() {
     await browser.close();
 }
 
-async function setPage(newPage?: Page) {
+export async function setPage(newPage?: Page) {
     await setCurrentPage(newPage);
 
     // override the defaults of the page attributes
@@ -60,7 +60,7 @@ async function setPage(newPage?: Page) {
     // handling JS alert(), comfirm(), prompt() to always accept
     currentPage.on('dialog', async (dialog) => {
         await dialog.accept();
-        
+
         Log('Dialog event: ' + dialog.message());
     });
 
@@ -103,7 +103,7 @@ async function setBrowserCtx(browserCtxOptions: BrowserContextOptions) {
     browserCtx = await browser.newContext(browserCtxOptions);
 }
 
-export async function setCurrentPage(newCurrentPage?: Page) {
+async function setCurrentPage(newCurrentPage?: Page) {
     if (newCurrentPage == undefined) {
         currentPage = await browserCtx.newPage();
     }

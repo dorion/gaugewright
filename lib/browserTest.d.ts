@@ -12,4 +12,4 @@ export declare function StartTracing(mode: TraceMode, options?: object): Promise
 export declare function StopTracing(options?: object): Promise<void>;
 export declare function OpenBrowserCtx(selectedBrowser?: string, launchOptions?: LaunchOptions, options?: BrowserContextOptions): Promise<void>;
 export declare function CloseBrowser(): Promise<void>;
-export declare function setCurrentPage(newCurrentPage?: Page): Promise<void>;
+export declare function setPage(newPage?: Page): Promise<void>;
