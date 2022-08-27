@@ -17,10 +17,24 @@ import { Log } from "./utils";
 export let currentPage: Page;
 export let browser: Browser;
 export let browserCtx: BrowserContext;
-export let isTracing: boolean = false;
+export let CurrentTraceMode: TraceMode;
 
-export function setTracing(tracing: boolean) {
-    isTracing = tracing
+export enum TraceMode {
+    None,
+    Failed,
+    All
+}
+
+export async function StartTracing(mode: TraceMode, options?: object) {
+    CurrentTraceMode = mode;
+
+    if (mode !== TraceMode.None) {
+        await browserCtx.tracing.start(options);
+    }
+}
+
+export async function StopTracing(options?: object) {
+    await browserCtx.tracing.stop(options);
 }
 
 export async function OpenBrowserCtx(selectedBrowser?: string, launchOptions?: LaunchOptions, options?: BrowserContextOptions) {
@@ -63,11 +77,11 @@ async function setPage(newPage?: Page) {
             if (err?.errno != undefined) {
                 throw err;
             }
-            //Utils.Log('Downloaded file size: ' + stats.size.toString());
+
+            Log('Downloaded file size: ' + stats.size.toString());
         });
         await download.delete();
     });
-
 }
 
 async function setBrowser(selectecBrowser: string, launchOptions: LaunchOptions) {
