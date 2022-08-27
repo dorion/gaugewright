@@ -51,7 +51,9 @@ export function SetCacheItem(key: string, value: string) {
 }
 
 function randomize(placeHolder: string): string {
-    let charSet = getPlaceholderId(placeHolder);    
+    placeHolder = placeHolder.slice(0, -1);
+    
+    let charSet = placeHolder.split(":")[1];    
     let length = parseInt(placeHolder.split(":")[2]);
 
     let generatedString = setPrefix(placeHolder);
@@ -61,19 +63,19 @@ function randomize(placeHolder: string): string {
         length: length,
     });
 
-    Log("Generated random string: " + generatedString);
+    Log("Random: " + generatedString);
 
     return generatedString;
 }
 
 function setPrefix(placeholder: string): string {
-    let prefixedText = '';
+    let prefix = '';
     
     if (placeholder.split(":")[3] == 'PREFIX') {
-        prefixedText = placeholder.split(":")[4];
+        prefix = placeholder.split(":")[4];
     }
 
-    return prefixedText;
+    return prefix;
 }
 
 export function SetItemInObjectRepository(key: string, value: string) {
