@@ -1,4 +1,4 @@
-import { Browser, Page, BrowserContext, BrowserContextOptions, LaunchOptions } from "playwright";
+import { Browser, Page, BrowserContext, BrowserContextOptions, LaunchOptions, PageScreenshotOptions } from "playwright";
 export declare let currentPage: Page;
 export declare let browser: Browser;
 export declare let browserCtx: BrowserContext;
@@ -13,3 +13,4 @@ export declare function StopTracing(options?: object): Promise<void>;
 export declare function OpenBrowserCtx(selectedBrowser?: string, launchOptions?: LaunchOptions, options?: BrowserContextOptions): Promise<void>;
 export declare function CloseBrowser(): Promise<void>;
 export declare function setPage(newPage?: Page): Promise<void>;
+export declare function TakeScreenshot(options: PageScreenshotOptions): Promise<void>;

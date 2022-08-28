@@ -9,9 +9,11 @@ import {
     BrowserContext,
     BrowserContextOptions,
     LaunchOptions,
-    BrowserType
+    BrowserType,
+    PageScreenshotOptions
 } from "playwright";
 import { stat } from "fs";
+import * as path from "path";
 import { Log } from "./utils";
 
 export let currentPage: Page;
@@ -41,7 +43,7 @@ export async function OpenBrowserCtx(selectedBrowser?: string, launchOptions?: L
     selectedBrowser = selectedBrowser ?? 'chrome';
     launchOptions = launchOptions ?? {};
     options = options ?? {};
-    
+
     await setBrowser(selectedBrowser, launchOptions);
     await setBrowserCtx(options);
     await setPage();
@@ -70,16 +72,16 @@ export async function setPage(newPage?: Page) {
         stat(
             path,
             (err, stats) => {
-            if (stats.size <= 0) {
-                throw new Error('Downloaded file is empty!');
-            }
-            
-            if (err?.errno != undefined) {
-                throw err;
-            }
+                if (stats.size <= 0) {
+                    throw new Error('Downloaded file is empty!');
+                }
 
-            Log('Downloaded file size: ' + stats.size.toString());
-        });
+                if (err?.errno != undefined) {
+                    throw err;
+                }
+
+                Log('Downloaded file size: ' + stats.size.toString());
+            });
         await download.delete();
     });
 }
@@ -110,4 +112,14 @@ async function setCurrentPage(newCurrentPage?: Page) {
     else {
         currentPage = newCurrentPage;
     }
+}
+
+export async function TakeScreenshot(options: PageScreenshotOptions) {
+    let pageScreenshotOptions: PageScreenshotOptions = {
+        path: options.path,
+        fullPage: options.fullPage ?? false,
+        type: options.type ?? 'png'
+    };
+
+    await currentPage.screenshot(pageScreenshotOptions);
 }
